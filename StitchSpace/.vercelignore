@@ -1,0 +1,58 @@
+# Vercel - Files to Ignore During Build/Deployment
+
+# Dependencies (will be installed)
+node_modules
+
+# Local development
+.env.development
+.env.local
+.env.*.local
+
+# Development tools
+.git
+.gitignore
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build artifacts to ignore
+.cache
+dist
+
+# Documentation files (don't need for deployment)
+*.md
+!README.md
+
+# Server files (only frontend needed)
+server.js
+routes/
+models/
+middleware/
+
+# Database files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+test/
+__tests__/
+coverage/
+
+# Misc
+.prettierignore
+.prettierrc
+.eslintignore
+.eslintrc*
