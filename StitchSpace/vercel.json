@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projectSettings": {
-    "rootDirectory": "client"
+    "rootDirectory": "client",
+    "buildCommand": "npm run build",
+    "outputDirectory": "build"
   }
 }
