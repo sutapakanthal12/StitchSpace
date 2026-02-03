@@ -23,7 +23,7 @@ function Community({ user }) {
 
   useEffect(() => {
     fetchCommunityData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchCommunityData = async () => {
     try {

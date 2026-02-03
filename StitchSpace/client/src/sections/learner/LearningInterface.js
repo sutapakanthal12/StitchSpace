@@ -14,7 +14,7 @@ function LearningInterface({ user }) {
 
   useEffect(() => {
     fetchLearningData();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchLearningData = async () => {
     try {

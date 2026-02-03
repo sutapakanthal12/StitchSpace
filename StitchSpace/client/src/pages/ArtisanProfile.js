@@ -9,7 +9,7 @@ function ArtisanProfile() {
 
   useEffect(() => {
     fetchArtisan();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchArtisan = async () => {
     try {

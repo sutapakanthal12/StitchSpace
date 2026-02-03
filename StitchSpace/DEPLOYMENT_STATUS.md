@@ -19,6 +19,7 @@
 ```
 
 ### ESLint Warnings (Safe to Ignore)
+
 ```
 ⚠️ 10 warnings in component files
   - Missing dependency array items
@@ -40,6 +41,7 @@
 ## 🏗️ Architecture
 
 ### Current (Development)
+
 ```
 Frontend: http://localhost:3000
 Backend:  http://localhost:5000
@@ -47,6 +49,7 @@ Database: MongoDB Atlas (Cloud)
 ```
 
 ### After Deployment
+
 ```
 Frontend: https://stitchspace.vercel.app (Vercel)
 Backend:  https://stitchspace-api.onrender.com (Render)
@@ -58,6 +61,7 @@ Database: MongoDB Atlas (Cloud) - No changes
 ## 📋 What's Included
 
 ### Frontend
+
 - ✅ React 18.2.0
 - ✅ React Router v6 (Routing)
 - ✅ Axios (HTTP Requests)
@@ -66,6 +70,7 @@ Database: MongoDB Atlas (Cloud) - No changes
 - ✅ React Quill (Rich Text)
 
 ### Backend
+
 - ✅ Express.js
 - ✅ MongoDB + Mongoose
 - ✅ JWT Authentication
@@ -75,6 +80,7 @@ Database: MongoDB Atlas (Cloud) - No changes
 - ✅ Email Service (Nodemailer)
 
 ### Database
+
 - ✅ MongoDB Atlas (Cloud)
 - ✅ Collections: User, Product, Workshop, Order, CommunityPost
 - ✅ Pre-configured credentials
@@ -84,6 +90,7 @@ Database: MongoDB Atlas (Cloud) - No changes
 ## 🚀 Next Steps to Deploy
 
 ### Step 1: Deploy Frontend (Vercel)
+
 1. Go to https://vercel.com
 2. Sign up with GitHub
 3. Import StitchSpace repository
@@ -91,6 +98,7 @@ Database: MongoDB Atlas (Cloud) - No changes
 5. Get your Vercel URL
 
 ### Step 2: Deploy Backend (Render)
+
 1. Go to https://render.com
 2. Sign up with GitHub
 3. Create Web Service
@@ -102,6 +110,7 @@ Database: MongoDB Atlas (Cloud) - No changes
 6. Deploy and get your Render URL
 
 ### Step 3: Connect Services
+
 1. Update client/.env.production with Render URL
 2. Update server.js CORS with Vercel URL
 3. Push to GitHub
@@ -149,18 +158,21 @@ StitchSpace/
 ## ✅ Verification Points
 
 ### Frontend Build
+
 - [x] Build completes without errors
 - [x] Build folder contains HTML/JS/CSS
 - [x] index.html present in build/
 - [x] static/ folder with JS bundles
 
 ### Configuration
+
 - [x] API endpoints use environment variables
 - [x] CORS configured for production
 - [x] SPA routing configured in vercel.json
 - [x] Environment variables documented
 
 ### GitHub
+
 - [x] All files committed
 - [x] Latest version pushed
 - [x] Ready for CI/CD
@@ -181,6 +193,7 @@ StitchSpace/
 ## 📈 Performance Metrics
 
 ### Build Output
+
 ```
 JS Bundle:  90.12 KB (gzipped)
 CSS Bundle:  2.11 KB (gzipped)
@@ -188,6 +201,7 @@ Total:     ~92 KB (very optimized!)
 ```
 
 ### Expected Load Times
+
 - Vercel CDN: ~200-400ms
 - Render Backend: ~30s first request (sleep), then 100-200ms
 - Total: ~1-2 seconds from browser
@@ -196,13 +210,13 @@ Total:     ~92 KB (very optimized!)
 
 ## 🆘 Troubleshooting Quick Links
 
-| Issue | Solution |
-|-------|----------|
-| 404 errors on routes | Vercel rewrites configured ✅ |
-| CORS errors | Update CORS_ORIGIN in Render ✅ |
-| API not responding | Check Render is awake (first request slow) |
-| Build fails | Check npm dependencies installed |
-| Database connection fails | Check MongoDB Atlas IP whitelist |
+| Issue                     | Solution                                   |
+| ------------------------- | ------------------------------------------ |
+| 404 errors on routes      | Vercel rewrites configured ✅              |
+| CORS errors               | Update CORS_ORIGIN in Render ✅            |
+| API not responding        | Check Render is awake (first request slow) |
+| Build fails               | Check npm dependencies installed           |
+| Database connection fails | Check MongoDB Atlas IP whitelist           |
 
 ---
 
@@ -218,15 +232,15 @@ Total:     ~92 KB (very optimized!)
 
 ## 📊 Summary
 
-| Component | Status | Location |
-|-----------|--------|----------|
-| Frontend Code | ✅ Ready | `client/src/` |
-| Frontend Build | ✅ Ready | `client/build/` |
-| Backend Code | ✅ Ready | `server.js, routes/` |
-| Database | ✅ Ready | MongoDB Atlas |
-| Vercel Config | ✅ Ready | `vercel.json` |
-| Environment Vars | ✅ Ready | `.env` files |
-| GitHub | ✅ Ready | Pushed to main |
+| Component        | Status   | Location             |
+| ---------------- | -------- | -------------------- |
+| Frontend Code    | ✅ Ready | `client/src/`        |
+| Frontend Build   | ✅ Ready | `client/build/`      |
+| Backend Code     | ✅ Ready | `server.js, routes/` |
+| Database         | ✅ Ready | MongoDB Atlas        |
+| Vercel Config    | ✅ Ready | `vercel.json`        |
+| Environment Vars | ✅ Ready | `.env` files         |
+| GitHub           | ✅ Ready | Pushed to main       |
 
 ---
 

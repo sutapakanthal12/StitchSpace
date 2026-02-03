@@ -107,6 +107,7 @@ function Marketplace({ user }) {
     setFilteredProducts(filtered);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const addToCart = (product) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const existingItem = cart.find((item) => item._id === product._id);

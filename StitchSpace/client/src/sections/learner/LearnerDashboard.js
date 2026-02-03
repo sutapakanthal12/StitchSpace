@@ -5,6 +5,7 @@ import axios from "axios";
 function LearnerDashboard({ user }) {
   const [activeTab, setActiveTab] = useState("enrolled");
   const [enrolledWorkshops, setEnrolledWorkshops] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [certificates, setCertificates] = useState([]);
   const [progress, setProgress] = useState({});
   const [loading, setLoading] = useState(true);

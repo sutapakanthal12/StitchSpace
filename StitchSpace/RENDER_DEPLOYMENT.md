@@ -5,14 +5,17 @@ This is the configuration for deploying the Express.js backend to Render.com
 ## Render Deployment Steps:
 
 ### 1. Create Render Account
+
 - Go to [render.com](https://render.com)
 - Sign up with GitHub account
 
 ### 2. Connect GitHub Repository
+
 - Link your GitHub repo to Render
 - Select the StitchSpace repository
 
 ### 3. Deploy Backend Service
+
 - Create new **Web Service** on Render
 - Select the repository
 - Set **Root Directory** to: `StitchSpace/`
@@ -20,6 +23,7 @@ This is the configuration for deploying the Express.js backend to Render.com
 - Set **Start Command**: `node server.js`
 
 ### 4. Add Environment Variables
+
 In Render Dashboard, add these environment variables:
 
 ```
@@ -41,18 +45,23 @@ CORS_ORIGIN=https://your-vercel-app.vercel.app
 ```
 
 ### 5. Get Backend URL
+
 After deployment on Render, you'll get a URL like:
+
 ```
 https://stitchspace-api.onrender.com
 ```
 
 ### 6. Update Frontend
+
 Update your `client/.env.production` with the Render backend URL:
+
 ```
 REACT_APP_API_URL=https://stitchspace-api.onrender.com
 ```
 
 ### 7. Deploy Frontend on Vercel
+
 - Push updated code to GitHub
 - Go to Vercel and deploy the frontend
 
@@ -61,17 +70,20 @@ REACT_APP_API_URL=https://stitchspace-api.onrender.com
 Your backend `server.js` needs CORS configured for your Vercel frontend:
 
 ```javascript
-const cors = require('cors');
+const cors = require("cors");
 
-app.use(cors({
-  origin: [
-    'http://localhost:3000',  // Local development
-    'https://your-vercel-app.vercel.app'  // Your production Vercel URL
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000", // Local development
+      "https://your-vercel-app.vercel.app", // Your production Vercel URL
+    ],
+    credentials: true,
+  })
+);
 ```
 
 ## Render vs Vercel
+
 - **Vercel**: Frontend (React) only - 1 year free tier
 - **Render**: Backend (Node.js) - Free tier with auto-sleep after 15 min inactivity

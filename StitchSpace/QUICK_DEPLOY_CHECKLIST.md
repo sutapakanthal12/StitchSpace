@@ -3,16 +3,19 @@
 ## ✅ COMPLETED (Ready Now)
 
 - [x] Frontend build successful
+
   - Command: `npm run build`
   - Output: `client/build/` (Ready to deploy)
   - Size: ~92KB (gzipped)
 
 - [x] Environment configuration
+
   - `client/.env.development` → localhost:5000
   - `client/.env.production` → render backend
   - `client/src/config/apiConfig.js` → Dynamic URL switching
 
 - [x] Vercel configuration
+
   - `vercel.json` with rewrites for SPA routing
   - Handles 404 redirects to index.html
 
@@ -26,12 +29,14 @@
 ## 🎯 TODO: Deploy to Vercel (Frontend)
 
 ### Step 1: Sign up on Vercel
+
 ```
 Go to: https://vercel.com
 Sign up with GitHub account
 ```
 
 ### Step 2: Deploy Frontend
+
 ```
 Option A - Using CLI:
   vercel --prod
@@ -44,6 +49,7 @@ Option B - Using Dashboard:
 ```
 
 ### Step 3: Get Vercel URL
+
 ```
 You'll receive: https://stitchspace.vercel.app
 (or similar domain)
@@ -57,12 +63,14 @@ You need it for backend CORS
 ## 🎯 TODO: Deploy to Render (Backend)
 
 ### Step 1: Sign up on Render
+
 ```
 Go to: https://render.com
 Sign up with GitHub account
 ```
 
 ### Step 2: Create Web Service
+
 ```
 1. Click "New +"
 2. Select "Web Service"
@@ -75,6 +83,7 @@ Sign up with GitHub account
 ```
 
 ### Step 3: Add Environment Variables
+
 ```
 MONGO_URI=mongodb+srv://sutapak2903_db_user:8hUVms9qwXkrtI1u@cluster0.jbnmoya.mongodb.net/stitchspace
 JWT_SECRET=J2uZR9kHOBEs6eiP
@@ -94,6 +103,7 @@ CORS_ORIGIN=https://stitchspace.vercel.app
 ```
 
 ### Step 4: Deploy
+
 ```
 Click "Create Web Service"
 Wait 2-5 minutes for deployment
@@ -109,6 +119,7 @@ SAVE THIS URL ↑
 ## 🎯 TODO: Connect Frontend & Backend
 
 ### Step 1: Update Frontend
+
 ```
 Edit: client/.env.production
 
@@ -119,6 +130,7 @@ REACT_APP_API_URL=https://stitchspace-api.onrender.com
 ```
 
 ### Step 2: Update Backend CORS
+
 ```
 Edit: server.js
 
@@ -127,6 +139,7 @@ https://stitchspace.vercel.app
 ```
 
 ### Step 3: Redeploy
+
 ```
 Git commit and push:
 git add .
@@ -142,6 +155,7 @@ Redeploy Render backend with new CORS config
 ## 🧪 Testing After Deployment
 
 ### Test Frontend
+
 ```
 ✓ Visit: https://stitchspace.vercel.app
 ✓ Page should load without 404 errors
@@ -150,12 +164,14 @@ Redeploy Render backend with new CORS config
 ```
 
 ### Test Backend
+
 ```
 ✓ Visit: https://stitchspace-api.onrender.com/api/health
 ✓ Should return: {"status": "Server is running"}
 ```
 
 ### Test API Integration
+
 ```
 ✓ Open browser DevTools (F12)
 ✓ Go to Network tab
@@ -169,17 +185,20 @@ Redeploy Render backend with new CORS config
 ## 📝 Important Notes
 
 ### Render Free Tier
+
 - Auto-sleeps after 15 min of inactivity
 - First request takes ~30 seconds to wake up
 - This is normal! Not a bug.
 - Upgrade to paid tier to disable sleep
 
 ### MongoDB Connection
+
 - Your MongoDB Atlas is already configured
 - No changes needed
 - Automatically allows Render IPs
 
 ### Build Information
+
 ```
 ✅ Build Tool: Create React App
 ✅ Output Folder: client/build
@@ -192,12 +211,12 @@ Redeploy Render backend with new CORS config
 
 ## 🔗 Important URLs
 
-| Service | URL | Purpose |
-|---------|-----|---------|
-| GitHub | https://github.com/sutapakanthal12/StitchSpace | Source code |
-| Vercel | https://vercel.com | Frontend deployment |
-| Render | https://render.com | Backend deployment |
-| MongoDB | https://www.mongodb.com/cloud/atlas | Database |
+| Service | URL                                            | Purpose             |
+| ------- | ---------------------------------------------- | ------------------- |
+| GitHub  | https://github.com/sutapakanthal12/StitchSpace | Source code         |
+| Vercel  | https://vercel.com                             | Frontend deployment |
+| Render  | https://render.com                             | Backend deployment  |
+| MongoDB | https://www.mongodb.com/cloud/atlas            | Database            |
 
 ---
 

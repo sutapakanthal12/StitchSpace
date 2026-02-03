@@ -64,6 +64,7 @@ vercel --prod
 ### After Vercel Deployment
 
 You'll get a URL like:
+
 ```
 https://stitchspace.vercel.app
 ```
@@ -81,6 +82,7 @@ https://stitchspace.vercel.app
 3. Create new **Web Service**
 4. Select your GitHub repository
 5. Configure:
+
    - **Name**: `stitchspace-api`
    - **Root Directory**: `StitchSpace`
    - **Runtime**: `Node`
@@ -113,6 +115,7 @@ CORS_ORIGIN=https://stitchspace.vercel.app
 ### After Render Deployment
 
 You'll get a URL like:
+
 ```
 https://stitchspace-api.onrender.com
 ```
@@ -124,6 +127,7 @@ https://stitchspace-api.onrender.com
 ### Update Frontend with Backend URL
 
 Edit `client/.env.production`:
+
 ```
 REACT_APP_API_URL=https://stitchspace-api.onrender.com
 ```
@@ -133,24 +137,26 @@ REACT_APP_API_URL=https://stitchspace-api.onrender.com
 In `server.js`, update CORS to accept your Vercel URL:
 
 ```javascript
-const cors = require('cors');
+const cors = require("cors");
 
 const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5000',
-  'https://stitchspace.vercel.app'  // Your Vercel frontend URL
+  "http://localhost:3000",
+  "http://localhost:5000",
+  "https://stitchspace.vercel.app", // Your Vercel frontend URL
 ];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 ```
 
 ---
@@ -203,6 +209,7 @@ StitchSpace/
 After deployment, test these:
 
 ### Frontend
+
 ```
 https://stitchspace.vercel.app/
 https://stitchspace.vercel.app/auth
@@ -211,11 +218,13 @@ https://stitchspace.vercel.app/community
 ```
 
 ### Backend Health Check
+
 ```
 https://stitchspace-api.onrender.com/api/health
 ```
 
 ### API Endpoints (Change URL as needed)
+
 ```
 GET  https://stitchspace-api.onrender.com/api/products
 GET  https://stitchspace-api.onrender.com/api/workshops
@@ -228,11 +237,13 @@ POST https://stitchspace-api.onrender.com/api/auth/login
 ## 🔄 Environment Variables Summary
 
 ### Frontend (.env.production)
+
 ```
 REACT_APP_API_URL=https://stitchspace-api.onrender.com
 ```
 
 ### Backend (Render Dashboard)
+
 ```
 MONGO_URI=...
 JWT_SECRET=...
@@ -245,24 +256,29 @@ CORS_ORIGIN=https://stitchspace.vercel.app
 ## ⚠️ Important Notes
 
 ### 1. Render Free Tier Behavior
+
 - Auto-sleeps after 15 min of inactivity
 - First request takes 30 seconds to wake up
 - **Solution**: Upgrade to paid tier or use keep-alive service
 
 ### 2. MongoDB Connection
+
 - Your MongoDB Atlas connection is already active
 - No changes needed
 - IP whitelist must allow Render's IPs (automatically configured)
 
 ### 3. File Uploads (Cloudinary)
+
 - Currently using dummy credentials
 - Update these in Render environment variables for production
 
 ### 4. Email Service
+
 - Using Gmail credentials
 - Make sure Gmail allows "Less secure apps" or use App Passwords
 
 ### 5. Payment Gateways
+
 - Stripe: Currently in test mode
 - Razorpay: Currently in test mode
 - Update keys in Render for production
@@ -272,20 +288,24 @@ CORS_ORIGIN=https://stitchspace.vercel.app
 ## 🚨 Troubleshooting
 
 ### Frontend shows 404 error
+
 - ✅ Fix: Vercel.json has rewrites configured
 - Ensure `vercel.json` is in root directory
 
 ### Backend not responding
+
 - Check Render deployment logs
 - Verify MongoDB is accessible
 - Check CORS_ORIGIN matches your Vercel URL
 
 ### CORS errors in browser
+
 - Update `server.js` CORS configuration
 - Make sure CORS_ORIGIN env var is set on Render
 - Redeploy backend
 
 ### API calls fail in production
+
 - Verify `client/.env.production` has correct API URL
 - Check if Render backend is awake (first request takes 30s)
 - Check browser console for exact error

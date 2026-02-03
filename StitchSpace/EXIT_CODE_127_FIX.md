@@ -9,6 +9,7 @@ Root Cause: Vercel was treating root directory as the project root
 ```
 
 ### Why This Happened
+
 - Your project is a **FULL STACK** (Frontend + Backend)
 - Root `package.json` has backend dependencies (Express, MongoDB)
 - Root `package.json` does NOT have `react-scripts`
@@ -20,6 +21,7 @@ Root Cause: Vercel was treating root directory as the project root
 ## The Solution
 
 ### Root vercel.json (FIXED)
+
 ```json
 {
   "version": 2,
@@ -32,6 +34,7 @@ Root Cause: Vercel was treating root directory as the project root
 **What this does**: Tells Vercel that the root project is in the `client` folder
 
 ### Client vercel.json (UPDATED)
+
 ```json
 {
   "version": 2,
@@ -54,6 +57,7 @@ Root Cause: Vercel was treating root directory as the project root
 ```
 
 **What this does**: Uses Vercel's static build tool with:
+
 - Source: `package.json` (which has react-scripts)
 - Output: `build` folder (Create React App default)
 - Routes: All paths → `/index.html` (SPA routing)
@@ -63,6 +67,7 @@ Root Cause: Vercel was treating root directory as the project root
 ## Why This Works Now
 
 ### Before (Broken)
+
 ```
 Vercel Root
     ↓
@@ -76,6 +81,7 @@ ERROR: react-scripts not found (exit code 127)
 ```
 
 ### After (Fixed)
+
 ```
 Vercel Root
     ↓
@@ -97,6 +103,7 @@ SUCCESS: 92KB build ✅
 ## Verification
 
 ### Local Build Test ✅
+
 ```
 Command: npm run build
 Status: ✅ SUCCESS
@@ -106,6 +113,7 @@ Warnings: 10 (non-critical)
 ```
 
 ### Build Output Files ✅
+
 ```
 client/build/
 ├── index.html
@@ -120,6 +128,7 @@ client/build/
 ## Deploy on Vercel NOW
 
 ### Step 1: Push to GitHub ✅ (Done)
+
 ```bash
 git add .
 git commit -m "FINAL FIX: Vercel configuration"
@@ -127,6 +136,7 @@ git push origin main
 ```
 
 ### Step 2: Go to Vercel
+
 ```
 1. Open: https://vercel.com
 2. Click "Add New..." → "Project"
@@ -135,6 +145,7 @@ git push origin main
 ```
 
 ### Step 3: Deploy
+
 ```
 ✅ Vercel auto-detects configuration
 ✅ Vercel sees rootDirectory = "client"
@@ -149,6 +160,7 @@ git push origin main
 ## Expected Results
 
 ### Build Phase
+
 ```
 Time: ~2-3 minutes
 ✅ npm install (gets react-scripts)
@@ -158,6 +170,7 @@ Time: ~2-3 minutes
 ```
 
 ### Your Live Frontend
+
 ```
 URL: https://stitchspace.vercel.app
 ✅ HTTPS enabled
@@ -172,13 +185,14 @@ URL: https://stitchspace.vercel.app
 ❌ Don't use CLI deployment (harder to debug)  
 ❌ Don't remove vercel.json files  
 ❌ Don't commit .env files  
-❌ Don't push node_modules  
+❌ Don't push node_modules
 
 ---
 
 ## Troubleshooting If Error Persists
 
 ### Check 1: GitHub Sync
+
 ```bash
 cd c:\Users\sutap\OneDrive\Desktop\pro\StitchSpace
 git pull origin main
@@ -186,6 +200,7 @@ git log --oneline -3
 ```
 
 ### Check 2: Vercel Logs
+
 1. Go to Vercel Dashboard
 2. Click your project
 3. Click "Deployments"
@@ -194,6 +209,7 @@ git log --oneline -3
 6. Read the error message carefully
 
 ### Check 3: Clear Vercel Cache
+
 1. Go to Project Settings
 2. Click "Git" tab
 3. Click "Disconnect Git"
@@ -203,13 +219,13 @@ git log --oneline -3
 
 ## Key Files
 
-| File | Status | Purpose |
-|------|--------|---------|
-| `vercel.json` | ✅ FIXED | Root config with rootDirectory |
-| `client/vercel.json` | ✅ UPDATED | Static build config |
-| `client/package.json` | ✅ OK | Has react-scripts |
-| `client/package-lock.json` | ✅ OK | Locked dependencies |
-| `package.json` | ✅ OK | Backend (ignored by Vercel now) |
+| File                       | Status     | Purpose                         |
+| -------------------------- | ---------- | ------------------------------- |
+| `vercel.json`              | ✅ FIXED   | Root config with rootDirectory  |
+| `client/vercel.json`       | ✅ UPDATED | Static build config             |
+| `client/package.json`      | ✅ OK      | Has react-scripts               |
+| `client/package-lock.json` | ✅ OK      | Locked dependencies             |
+| `package.json`             | ✅ OK      | Backend (ignored by Vercel now) |
 
 ---
 
@@ -227,16 +243,19 @@ git log --oneline -3
 ## Summary
 
 ### Problem
+
 Vercel tried to run `react-scripts build` in the root directory, where react-scripts doesn't exist (exit code 127)
 
 ### Solution
+
 Tell Vercel the root directory is `client/` where react-scripts IS available
 
 ### Result
+
 ✅ Vercel will now find react-scripts  
 ✅ Build will complete successfully  
 ✅ Frontend will deploy  
-✅ No more exit code 127 error  
+✅ No more exit code 127 error
 
 ---
 

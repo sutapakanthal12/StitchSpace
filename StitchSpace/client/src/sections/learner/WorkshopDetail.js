@@ -12,7 +12,7 @@ function WorkshopDetail({ user }) {
 
   useEffect(() => {
     fetchWorkshopDetails();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchWorkshopDetails = async () => {
     try {

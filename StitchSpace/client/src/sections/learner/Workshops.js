@@ -18,7 +18,7 @@ function Workshops() {
 
   useEffect(() => {
     applyFilters();
-  }, [workshops, filters]);
+  }, [workshops, filters]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchWorkshops = async () => {
     try {

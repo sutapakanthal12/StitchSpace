@@ -5,7 +5,9 @@ import axios from "axios";
 function BuyerDashboard({ user, setUser }) {
   const [activeTab, setActiveTab] = useState("orders");
   const [orders, setOrders] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [wishlist, setWishlist] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [savedArtisans, setSavedArtisans] = useState([]);
   const [profile, setProfile] = useState(user);
   const [addresses, setAddresses] = useState([]);
