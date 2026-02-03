@@ -167,7 +167,7 @@ function Marketplace({ user }) {
 
     try {
       const token = localStorage.getItem("token");
-      
+
       // Prepare product data
       const productData = {
         name: newProduct.name,
