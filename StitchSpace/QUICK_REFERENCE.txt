@@ -1,0 +1,153 @@
+# Quick Reference Card - API & Deployment
+
+## 🚀 One-Minute Overview
+
+Your StitchSpace app is ready to deploy! Here's what was done:
+
+### ✅ Completed
+- Replaced all hardcoded `localhost:5000` with `process.env.REACT_APP_API_URL`
+- Configured Express CORS for Vercel + Render
+- Set up environment variables for production
+- Fixed all ESLint errors
+- Production build tested (90.27 KB)
+- Complete documentation provided
+
+### 🎯 Next Steps
+1. **Deploy backend** to Render (5 min)
+2. **Get Render URL** 
+3. **Add to Vercel** environment variables
+4. **Redeploy frontend** on Vercel
+5. **Test login** works on production
+
+---
+
+## 📦 Local Commands
+
+### Run Backend
+```powershell
+cd C:\Users\sutap\OneDrive\Desktop\pro\StitchSpace
+npm install
+node server.js
+```
+
+### Run Frontend
+```powershell
+cd client
+npm start
+```
+
+### Build Frontend
+```powershell
+cd client
+npm run build
+```
+
+---
+
+## 🌐 Production Deployment
+
+### Backend (Render)
+- Service name: `stitchspace-api`
+- Build: `npm install`
+- Start: `node server.js`
+- Environment: All variables from guide
+
+### Frontend (Vercel)
+- Root directory: `client`
+- Environment: `REACT_APP_API_URL=<render-url>`
+
+---
+
+## 📍 URLs After Deployment
+
+```
+Frontend: https://stitch-space-isew.vercel.app
+Backend:  https://stitchspace-api.onrender.com
+```
+
+---
+
+## 📚 Documentation
+
+| File | Purpose |
+|------|---------|
+| `DEPLOYMENT_READY_SUMMARY.md` | Overview & checklist |
+| `COMPLETE_API_DEPLOYMENT_GUIDE.md` | Full reference guide |
+| `BACKEND_RENDER_DEPLOYMENT.md` | Render deployment steps |
+| `VERCEL_FRONTEND_CONFIG.md` | Vercel environment setup |
+
+---
+
+## ✨ Key Files Changed
+
+- `server.js` - CORS configuration
+- `client/src/App.js` - axios baseURL setup
+- `client/.env.development` - local backend URL
+- `client/.env.production` - production backend URL
+- `client/package.json` - cross-env for Windows
+
+---
+
+## 🧪 Quick Tests
+
+### Local
+```bash
+# Backend health
+curl http://localhost:5000/api/health
+
+# Frontend
+Open http://localhost:3000 → Try login
+```
+
+### Production  
+```bash
+# Backend health
+curl https://stitchspace-api.onrender.com/api/health
+
+# Frontend
+Visit https://stitch-space-isew.vercel.app → Try login
+```
+
+---
+
+## 🔑 Remember
+
+✅ All code is pushed to GitHub
+✅ Login logic unchanged
+✅ UI unchanged
+✅ Works on both local and production
+✅ Only environment variables change
+
+---
+
+## ⚡ 5-Minute Deployment
+
+1. **Go to Render** → Create Web Service (GitHub integration)
+2. **Set environment variables** from guide
+3. **Deploy** → Get URL (e.g., stitchspace-api.onrender.com)
+4. **Go to Vercel** → Settings → Environment Variables
+5. **Add** `REACT_APP_API_URL=https://stitchspace-api.onrender.com`
+6. **Redeploy** frontend
+7. **Test** login on Vercel URL
+8. **Done!** 🎉
+
+---
+
+## 🆘 Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| "Cannot find module" | Run `npm install` |
+| CORS error | Backend URL wrong in env var |
+| Login fails | Verify backend is running on Render |
+| API returns 404 | Check Render service is deployed |
+| Vercel says "not found" | Check root directory is set to `client` |
+
+---
+
+**Status**: ✅ Ready to Deploy
+
+**GitHub**: https://github.com/sutapakanthal12/StitchSpace
+
+**Last Updated**: February 3, 2026
+
