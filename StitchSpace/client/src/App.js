@@ -6,6 +6,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 import axios from "axios";
+// eslint-disable-next-line no-unused-vars
+import { API_CONFIG } from "./config/apiConfig";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
@@ -42,6 +44,9 @@ function AppContent() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Configure axios base URL
+  axios.defaults.baseURL = API_CONFIG.BASE_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
