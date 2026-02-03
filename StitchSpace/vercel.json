@@ -1,0 +1,13 @@
+{
+  "name": "stitchspace",
+  "version": 2,
+  "public": false,
+  "buildCommand": "npm run build",
+  "outputDirectory": "client/build",
+  "framework": "react",
+  "envPrefix": "REACT_APP_",
+  "env": {
+    "REACT_APP_API_URL": "@api_url",
+    "NODE_ENV": "production"
+  }
+}
