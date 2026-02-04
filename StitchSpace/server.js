@@ -13,6 +13,7 @@ const allowedOrigins = [
   "http://localhost:3000",           // Local React development
   "http://localhost:5000",           // Local fallback
   "https://stitch-space-isew.vercel.app", // Vercel deployment
+  process.env.FRONTEND_URL || "",    // Railway environment frontend URL
 ];
 
 const corsOptions = {
