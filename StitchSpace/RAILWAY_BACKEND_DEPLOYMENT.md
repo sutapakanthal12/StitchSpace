@@ -1,6 +1,7 @@
 # Railway Backend Deployment - MERN Project Guide
 
 ## Project Structure
+
 ```
 StitchSpace/
 ├── /api                    ← Backend API (deploy on Railway)
@@ -26,12 +27,14 @@ StitchSpace/
 ## What Was Fixed ✅
 
 ### 1. **Backend Root Directory: `/api`**
+
 - ✅ Clean Express server at `/api/server.js`
 - ✅ Backend-only `package.json` at `/api/package.json`
 - ✅ Removed React build serving code
 - ✅ Removed `path` import (no longer needed)
 
 ### 2. **Express Server Configuration (`/api/server.js`)**
+
 - ✅ Clean API-only setup (no frontend serving)
 - ✅ Listens on `process.env.PORT || 5000`
 - ✅ CORS configured for Vercel: `https://stitch-space-isew.vercel.app`
@@ -42,6 +45,7 @@ StitchSpace/
 - ✅ App exported for testing
 
 ### 3. **Backend Package.json (`/api/package.json`)**
+
 - ✅ Backend dependencies only (no React)
 - ✅ Node.js 18.x engine specified
 - ✅ Start script: `"start": "node server.js"`
@@ -52,17 +56,20 @@ StitchSpace/
   - nodemailer, razorpay, stripe, axios
 
 ### 4. **Railway Configuration**
+
 - ✅ `/api/railway.json` created with proper settings
 - ✅ Build command: `npm install`
 - ✅ Start command: `npm start`
 - ✅ Auto-restart on failure enabled
 
 ### 5. **Removed Vercel-Specific Config**
+
 - ✅ Updated `/api/vercel.json` to generic config
 - ✅ Removed Vercel build specifications
 - ✅ Removed Vercel environment variable references
 
 ### 6. **Clean Build Files**
+
 - ✅ Created `/api/.railwayignore`
 - ✅ Excludes: node_modules, .git, logs, env files
 - ✅ Production-ready deployment
@@ -100,7 +107,7 @@ git push origin main
 2. **Create New Project**
 3. **Deploy from GitHub**
 4. **Select Repository:** your-repo-name
-5. **Choose Deployment Source:** 
+5. **Choose Deployment Source:**
    - Select `/api` folder as root directory
    - **CRITICAL:** Point Railway to `/api` folder
 6. **Create Service**
@@ -140,6 +147,7 @@ EMAIL_PASS=your_app_password
    - Format: `https://your-project.up.railway.app`
 
 2. **Test Health Endpoint:**
+
    ```bash
    curl https://your-project.up.railway.app/api/health
    # Expected response: {"status":"Server is running"}
@@ -166,6 +174,7 @@ EMAIL_PASS=your_app_password
 ## ✅ Verification Checklist
 
 **Backend Structure:**
+
 - [ ] `/api/server.js` exists and is clean (no frontend code)
 - [ ] `/api/package.json` has start script: `"start": "node server.js"`
 - [ ] `/api/railway.json` exists with proper settings
@@ -174,6 +183,7 @@ EMAIL_PASS=your_app_password
 - [ ] Root `/server.js` has no frontend serving code
 
 **Express Configuration:**
+
 - [ ] Server listens on `process.env.PORT || 5000`
 - [ ] CORS allows Vercel domain
 - [ ] MongoDB connects with retry logic
@@ -182,6 +192,7 @@ EMAIL_PASS=your_app_password
 - [ ] 404 handler for undefined routes
 
 **Railway Configuration:**
+
 - [ ] `/api` folder selected as root
 - [ ] All environment variables set
 - [ ] `npm start` runs `node server.js`
@@ -189,6 +200,7 @@ EMAIL_PASS=your_app_password
 - [ ] Health endpoint responds
 
 **Frontend Integration:**
+
 - [ ] Vercel has `REACT_APP_API_URL` set
 - [ ] Frontend calls correct backend URL
 - [ ] No CORS errors in console
@@ -199,6 +211,7 @@ EMAIL_PASS=your_app_password
 ## 🔧 File Changes Summary
 
 ### Created Files:
+
 ```
 /api/server.js          ← Clean Express backend
 /api/package.json       ← Backend dependencies only
@@ -207,12 +220,14 @@ EMAIL_PASS=your_app_password
 ```
 
 ### Modified Files:
+
 ```
 /server.js              ← Removed React build serving
 /api/vercel.json        ← Removed Vercel-specific config
 ```
 
 ### Unchanged:
+
 ```
 /client/                ← Frontend (DO NOT MODIFY)
 /routes/                ← API routes (used by /api)
@@ -226,33 +241,43 @@ EMAIL_PASS=your_app_password
 ## 🚨 Common Issues & Solutions
 
 ### Issue: "Cannot find module '../routes/auth'"
+
 **Solution:** Ensure routes are in parent directory. Path is relative to `/api/server.js`:
+
 ```javascript
-require("../routes/auth")  // ✅ Correct
-require("./routes/auth")   // ❌ Wrong
+require("../routes/auth"); // ✅ Correct
+require("./routes/auth"); // ❌ Wrong
 ```
 
 ### Issue: 502 Bad Gateway
+
 **Solution:**
+
 1. Check Railway logs for errors
 2. Verify all environment variables set
 3. Ensure MongoDB URL is correct
 4. Check NODE_ENV is 'production'
 
 ### Issue: CORS Error from Frontend
+
 **Solution:**
+
 1. Verify FRONTEND_URL in Railway variables
 2. Check Vercel has correct REACT_APP_API_URL
 3. Verify allowedOrigins includes Vercel URL
 
 ### Issue: "Cannot GET /"
+
 **Solution:** This is expected! Backend is API-only:
+
 - Health check: GET `/api/health`
 - API routes only at `/api/*`
 - No HTML homepage
 
 ### Issue: Database Connection Timeout
+
 **Solution:**
+
 1. Verify MongoDB connection string exact match
 2. Check MongoDB Atlas allows Railway IP
 3. Ensure MONGO_URI set in Railway variables

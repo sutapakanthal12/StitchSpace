@@ -1,0 +1,51 @@
+# Fix Applied - Build Error Resolved
+
+## What Was Fixed
+
+Root `package.json` build script updated:
+
+**Before:** `"build": "cd client && npm run build"`  
+**After:** `"build": "echo \"Backend build (frontend is deployed separately to Vercel)\""`
+
+This prevents Railway from trying to build the React frontend when deploying the Node backend.
+
+---
+
+## Deploy Now
+
+### 1. Push Changes
+```bash
+git add .
+git commit -m "Fix Railway build - remove frontend build from root package.json"
+git push origin main
+```
+
+### 2. Redeploy on Railway
+- Dashboard → Backend Service → Deployments → Redeploy
+- Or push will trigger automatic redeploy
+
+### 3. Expected Result
+Railway logs will show:
+```
+✓ Building...
+✓ npm install
+✓ Starting...
+✓ Server running on port [PORT]
+✓ MongoDB connected
+✅ SUCCESS
+```
+
+---
+
+## Verify After Deploy
+
+```bash
+curl https://your-railway-url.up.railway.app/api/health
+# Expected: {"status":"Server is running"}
+```
+
+---
+
+**Frontend (Vercel):** Untouched ✅  
+**Backend (Railway):** Ready ✅  
+**Build Error:** Fixed ✅

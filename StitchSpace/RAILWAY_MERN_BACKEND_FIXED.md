@@ -59,6 +59,7 @@ Your MERN project backend has been **completely fixed** for Railway deployment. 
 ```
 
 **Key Points:**
+
 - ✅ Backend dependencies only (no React)
 - ✅ Node.js 18.x specified
 - ✅ Correct main entry: `server.js`
@@ -79,6 +80,7 @@ Your MERN project backend has been **completely fixed** for Railway deployment. 
 ```
 
 **What This Means:**
+
 - When Railway deploys, it runs: `npm start`
 - This executes: `node server.js`
 - Server starts on `process.env.PORT || 5000`
@@ -101,6 +103,7 @@ module.exports = app;
 ```
 
 **What This Means:**
+
 - ✅ Reads `PORT` from environment variables
 - ✅ Defaults to `5000` if not set
 - ✅ Railway can override with `PORT` environment variable
@@ -130,6 +133,7 @@ app.use("/api", (req, res) => {
 ```
 
 **Result:**
+
 - ✅ No React build files served
 - ✅ No static file serving
 - ✅ Pure API backend
@@ -146,6 +150,7 @@ app.use("/api", (req, res) => {
 ```
 
 **File Contents:**
+
 - ✅ Express server initialization
 - ✅ MongoDB connection
 - ✅ CORS configuration
@@ -156,6 +161,7 @@ app.use("/api", (req, res) => {
 - ✅ App export
 
 **Verification:**
+
 ```bash
 ls -la /api/server.js  # File exists ✓
 wc -l /api/server.js   # 78 lines
@@ -175,6 +181,7 @@ module.exports = app;
 ```
 
 **Why This Matters:**
+
 - ✅ App can be imported for testing
 - ✅ App can be used by serverless functions
 - ✅ Proper Node.js module pattern
@@ -186,6 +193,7 @@ module.exports = app;
 **Status:** ✅ COMPLETE
 
 **Original `/api/vercel.json`:**
+
 ```json
 {
   "version": 2,
@@ -196,6 +204,7 @@ module.exports = app;
 ```
 
 **Updated `/api/vercel.json`:**
+
 ```json
 {
   "buildCommand": "npm install",
@@ -205,6 +214,7 @@ module.exports = app;
 ```
 
 **What Changed:**
+
 - ✅ Removed Vercel-specific `builds` array
 - ✅ Removed Vercel `routes` configuration
 - ✅ Removed Vercel environment variable references
@@ -217,6 +227,7 @@ module.exports = app;
 **Status:** ✅ COMPLETE
 
 ### Created `/api/railway.json`:
+
 ```json
 {
   "$schema": "https://railway.app/railway.schema.json",
@@ -233,6 +244,7 @@ module.exports = app;
 ```
 
 ### Created `/api/.railwayignore`:
+
 ```
 .env.local
 .env.*.local
@@ -253,6 +265,7 @@ vercel.json
 ```
 
 **Result:**
+
 - ✅ Railway knows how to build the project
 - ✅ Railway knows how to start the server
 - ✅ Auto-restart on failure enabled
@@ -263,6 +276,7 @@ vercel.json
 ## 📊 File Structure Summary
 
 ### Created Files (4):
+
 ```
 ✅ /api/server.js          - Clean Express backend
 ✅ /api/package.json       - Backend dependencies
@@ -271,12 +285,14 @@ vercel.json
 ```
 
 ### Updated Files (2):
+
 ```
 ✅ /api/vercel.json        - Removed Vercel config
 ✅ /server.js              - Removed React serving
 ```
 
 ### Protected Files (No Changes):
+
 ```
 ❌ /client/                - Frontend (DO NOT MODIFY)
 ❌ /routes/                - API routes (unchanged)
@@ -289,6 +305,7 @@ vercel.json
 ## 🚀 Deployment Ready Checklist
 
 ### Backend Structure:
+
 - [x] `/api` folder is backend root
 - [x] `/api/server.js` is clean (no frontend code)
 - [x] `/api/package.json` exists with correct start script
@@ -297,6 +314,7 @@ vercel.json
 - [x] All dependencies listed in `/api/package.json`
 
 ### Express Configuration:
+
 - [x] Listens on `process.env.PORT || 5000`
 - [x] CORS configured for `https://stitch-space-isew.vercel.app`
 - [x] MongoDB connection with retry logic
@@ -306,6 +324,7 @@ vercel.json
 - [x] App exported: `module.exports = app`
 
 ### Code Cleanup:
+
 - [x] No React imports in backend
 - [x] No static file serving
 - [x] No `path` require (for file serving)
@@ -314,6 +333,7 @@ vercel.json
 - [x] No Vercel-specific code
 
 ### Railway Ready:
+
 - [x] `npm start` correctly starts server
 - [x] Environment variables can be set in Railway
 - [x] Routes use correct relative paths (`../routes/`)
@@ -326,6 +346,7 @@ vercel.json
 ## 🎯 Next Steps to Deploy
 
 ### 1. Commit Changes
+
 ```bash
 git add .
 git commit -m "Fix Railway backend deployment - clean /api structure"
@@ -333,6 +354,7 @@ git push origin main
 ```
 
 ### 2. Create Railway Service
+
 - Go to https://railway.app/dashboard
 - Create New Project
 - Deploy from GitHub
@@ -340,6 +362,7 @@ git push origin main
 - Click Create Service
 
 ### 3. Add Environment Variables
+
 ```
 MONGO_URI=mongodb+srv://sutapak2903_db_user:073zIcLCebwApqrO@cluster0.jbnmoya.mongodb.net/?appName=Cluster0
 JWT_SECRET=J2uZR9kHOBEs6eiP
@@ -353,12 +376,14 @@ EMAIL_USER=...
 ```
 
 ### 4. Deploy & Verify
+
 - Wait 5-10 minutes for deployment
 - Check logs for "MongoDB connected"
 - Test: `GET /api/health`
 - Verify: Returns `{"status":"Server is running"}`
 
 ### 5. Update Vercel Frontend
+
 - Add: `REACT_APP_API_URL=https://your-railway-url.up.railway.app`
 - Redeploy frontend
 - Test API calls from frontend
@@ -399,18 +424,18 @@ cat server.js | grep 'require.*routes'
 
 ## 🎉 Success Summary
 
-| Requirement | Status | Evidence |
-|-------------|--------|----------|
-| Backend root = `/api` | ✅ | `/api/server.js` exists |
-| Valid `package.json` | ✅ | `/api/package.json` created |
-| Correct start script | ✅ | `"start": "node server.js"` |
-| Port: `process.env.PORT \|\| 5000` | ✅ | Line 77 of `/api/server.js` |
-| No frontend build serving | ✅ | Removed from code |
-| No React dependencies | ✅ | Backend-only deps |
-| `server.js` exists | ✅ | `/api/server.js` (78 lines) |
-| App exported correctly | ✅ | `module.exports = app;` |
-| No Vercel config | ✅ | Removed from `/api` |
-| Railway ready | ✅ | `railway.json` + `.railwayignore` |
+| Requirement                        | Status | Evidence                          |
+| ---------------------------------- | ------ | --------------------------------- |
+| Backend root = `/api`              | ✅     | `/api/server.js` exists           |
+| Valid `package.json`               | ✅     | `/api/package.json` created       |
+| Correct start script               | ✅     | `"start": "node server.js"`       |
+| Port: `process.env.PORT \|\| 5000` | ✅     | Line 77 of `/api/server.js`       |
+| No frontend build serving          | ✅     | Removed from code                 |
+| No React dependencies              | ✅     | Backend-only deps                 |
+| `server.js` exists                 | ✅     | `/api/server.js` (78 lines)       |
+| App exported correctly             | ✅     | `module.exports = app;`           |
+| No Vercel config                   | ✅     | Removed from `/api`               |
+| Railway ready                      | ✅     | `railway.json` + `.railwayignore` |
 
 ---
 

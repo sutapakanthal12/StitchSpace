@@ -12,6 +12,7 @@
 ## Root Cause
 
 Railway's Nixpacks builder couldn't detect the Node.js application because:
+
 1. Missing `Procfile` - Railway uses this to know how to start the app
 2. Missing `start.sh` - Build script for deployment
 3. Missing `.nvmrc` - Node version specification
@@ -22,30 +23,37 @@ Railway's Nixpacks builder couldn't detect the Node.js application because:
 ## What Was Fixed
 
 ### 1. ✅ Created `Procfile`
+
 ```
 web: node server.js
 ```
+
 - Tells Railway exactly how to start the server
 - `web` process type for HTTP services
 
 ### 2. ✅ Created `start.sh`
+
 ```bash
 #!/bin/bash
 npm install
 npm start
 ```
+
 - Build script for Railway to execute
 - Installs dependencies
 - Starts the application
 
 ### 3. ✅ Created `.nvmrc`
+
 ```
 18.x
 ```
+
 - Specifies Node.js version
 - Ensures Railway uses compatible runtime
 
 ### 4. ✅ Updated `railway.json`
+
 ```json
 {
   "build": { "builder": "nixpacks" },
@@ -56,10 +64,12 @@ npm start
   }
 }
 ```
+
 - Direct start command
 - No ambiguous npm script
 
 ### 5. ✅ Updated `package.json`
+
 ```json
 "scripts": {
   "start": "node server.js",
@@ -68,10 +78,12 @@ npm start
   "test": "echo \"Error: no test specified\" && exit 1"
 }
 ```
+
 - Added explicit `build` script
 - Clarifies no compilation needed
 
 ### 6. ✅ Created `README.md`
+
 - Documents the backend API
 - Lists all endpoints
 - Specifies required environment variables
@@ -131,6 +143,7 @@ Server listens on process.env.PORT || 5000
 ## Next Steps to Deploy
 
 ### Step 1: Commit the Fixes
+
 ```bash
 git add .
 git commit -m "Fix Railway deployment - add Procfile, start.sh, .nvmrc"
@@ -140,17 +153,20 @@ git push origin main
 ### Step 2: Trigger Railway Redeploy
 
 **Option A: Manual Redeploy**
+
 1. Go to Railway dashboard
 2. Go to your service
 3. Click "Deployments"
 4. Click "Redeploy"
 
 **Option B: Push Triggers Automatic Deploy**
+
 - If linked to GitHub, push triggers deploy automatically
 
 ### Step 3: Monitor Deployment
 
 Railway should now:
+
 1. ✅ Detect Node.js project
 2. ✅ Run `npm install`
 3. ✅ Start with `node server.js`
@@ -173,6 +189,7 @@ curl https://your-railway-url.up.railway.app/api/health
 ### If Still Getting Build Error
 
 **Check 1: Procfile syntax**
+
 ```bash
 # Should contain exactly this:
 cat /api/Procfile
@@ -180,12 +197,14 @@ cat /api/Procfile
 ```
 
 **Check 2: package.json location**
+
 ```bash
 # Must be in /api directory
 ls -la /api/package.json
 ```
 
 **Check 3: Railway env variables**
+
 - Ensure `PORT` is NOT explicitly set (let Railway assign it)
 - Check `MONGO_URI` is correct
 - Verify `NODE_ENV=production`
@@ -193,18 +212,21 @@ ls -la /api/package.json
 ### If Deployment Completes But App Crashes
 
 **Check 1: Start script**
+
 ```bash
 # Verify in Railway logs
 # Should see: "Server running on port [PORT]"
 ```
 
 **Check 2: MongoDB connection**
+
 ```bash
 # Check Railway logs for:
 # "MongoDB connected" OR "MongoDB connection error"
 ```
 
 **Check 3: Environment variables**
+
 - Go to Railway service settings
 - Verify all required variables are set
 - Common issue: MONGO_URI missing
@@ -214,29 +236,36 @@ ls -la /api/package.json
 ## Key Configuration Files
 
 ### `/api/Procfile`
+
 ```
 web: node server.js
 ```
+
 - **Why needed:** Railway's standard for process definition
 - **What it does:** Tells Railway to run `node server.js` as web process
 
 ### `/api/start.sh`
+
 ```bash
 #!/bin/bash
 npm install
 npm start
 ```
+
 - **Why needed:** Railway can execute shell scripts
 - **What it does:** Installs deps and starts app
 
 ### `/api/.nvmrc`
+
 ```
 18.x
 ```
+
 - **Why needed:** Version specification
 - **What it does:** Forces Node 18.x runtime
 
 ### `/api/railway.json`
+
 ```json
 {
   "startCommand": "node server.js",
@@ -244,10 +273,12 @@ npm start
   "restartPolicyMaxRetries": 5
 }
 ```
+
 - **Why needed:** Railway-specific settings
 - **What it does:** Auto-restart on crash
 
 ### `/api/package.json` (updated)
+
 ```json
 {
   "scripts": {
@@ -256,6 +287,7 @@ npm start
   }
 }
 ```
+
 - **Why needed:** npm script definition
 - **What it does:** Clear start/build instructions
 
@@ -264,6 +296,7 @@ npm start
 ## Before & After
 
 ### Before (Build Failed) ❌
+
 ```
 Railway looks for build config
 No Procfile found
@@ -273,6 +306,7 @@ Nixpacks confused
 ```
 
 ### After (Build Succeeds) ✅
+
 ```
 Railway finds Procfile: web: node server.js
 Railway finds package.json: Node app detected
@@ -316,6 +350,7 @@ After deployment, you should see in Railway logs:
 ## Common Deploy Logs
 
 ### ✅ Successful Start
+
 ```
 Starting... npm install
 npm notice created a lockfile
@@ -326,6 +361,7 @@ MongoDB connected
 ```
 
 ### ❌ Start Fails (MONGO_URI issue)
+
 ```
 Server running on port 8000
 MongoDB connection error: invalid connection string
@@ -333,6 +369,7 @@ Retrying in 5 seconds...
 ```
 
 ### ❌ Start Fails (Module not found)
+
 ```
 Error: Cannot find module 'express'
 npm WARN deprecated
@@ -347,6 +384,7 @@ npm WARN found 0 vulnerabilities
 **Status After:** ✅ Build succeeds
 
 All necessary files have been created to fix the Railway deployment error. Railway can now:
+
 - ✅ Detect the Node.js application
 - ✅ Understand the start process
 - ✅ Install dependencies correctly
@@ -356,6 +394,7 @@ All necessary files have been created to fix the Railway deployment error. Railw
 ---
 
 **File Changes Made:**
+
 - ✅ Created: `/api/Procfile`
 - ✅ Created: `/api/start.sh`
 - ✅ Created: `/api/.nvmrc`
