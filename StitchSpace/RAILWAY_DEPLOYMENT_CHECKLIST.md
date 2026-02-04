@@ -14,6 +14,7 @@
 ## Environment Variables to Set on Railway
 
 **Required:**
+
 - [ ] MONGO_URI=mongodb+srv://sutapak2903_db_user:073zIcLCebwApqrO@cluster0.jbnmoya.mongodb.net/?appName=Cluster0
 - [ ] JWT_SECRET=J2uZR9kHOBEs6eiP
 - [ ] NODE_ENV=production
@@ -21,6 +22,7 @@
 - [ ] FRONTEND_URL=https://stitch-space-isew.vercel.app
 
 **Optional (for payment integrations):**
+
 - [ ] STRIPE_SECRET_KEY=your_key_here
 - [ ] STRIPE_PUBLISHABLE_KEY=your_key_here
 - [ ] RAZORPAY_KEY_ID=your_key_here
@@ -73,9 +75,12 @@
    - [ ] Environment variable added
 
 2. **Update apiConfig.js** (if needed)
+
    ```javascript
-   const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+   const API_BASE_URL =
+     process.env.REACT_APP_API_URL || "http://localhost:5000";
    ```
+
    - [ ] Already configured ✓
 
 3. **Redeploy Frontend**
@@ -122,18 +127,21 @@
 ## Troubleshooting
 
 **If deployment fails:**
+
 1. Check Railway logs for error messages
 2. Verify all environment variables are set
 3. Ensure Node.js version is compatible
 4. Check if package.json has all dependencies
 
 **If API calls fail:**
+
 1. Verify CORS settings include Vercel URL
 2. Check MongoDB connection string
 3. Look for timeout errors in logs
 4. Test health check endpoint
 
 **If CORS errors persist:**
+
 1. Check that FRONTEND_URL is set in Railway
 2. Verify allowedOrigins in server.js
 3. Test with curl from command line
@@ -146,11 +154,13 @@
 **Status:** ✅ Production Ready
 
 ### Next Steps:
+
 1. Monitor Railway dashboard for performance
 2. Set up error tracking (e.g., Sentry)
 3. Configure backups for MongoDB
 4. Monitor application logs regularly
 
 ---
+
 **Last Updated:** 2026-02-04
 **Deployment Guide:** [RAILWAY_DEPLOYMENT_GUIDE.md](RAILWAY_DEPLOYMENT_GUIDE.md)

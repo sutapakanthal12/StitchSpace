@@ -5,17 +5,21 @@
 Your backend is now ready to deploy to Railway! Here's what's been configured:
 
 ✅ **MongoDB URL Updated**
+
 - Connection string: `mongodb+srv://sutapak2903_db_user:073zIcLCebwApqrO@cluster0.jbnmoya.mongodb.net/?appName=Cluster0`
 
 ✅ **Production Environment**
+
 - NODE_ENV set to `production`
 - Port: 5000 (Railway auto-assigns)
 
 ✅ **CORS Configured**
+
 - Frontend: `https://stitch-space-isew.vercel.app`
 - Dynamic FRONTEND_URL support
 
 ✅ **Railway Configuration**
+
 - railway.json created for deployment settings
 
 ---
@@ -23,6 +27,7 @@ Your backend is now ready to deploy to Railway! Here's what's been configured:
 ## 📋 Deploy in 3 Simple Steps
 
 ### Step 1: Push Code to GitHub
+
 ```bash
 git add .
 git commit -m "Ready for Railway deployment"
@@ -30,6 +35,7 @@ git push origin main
 ```
 
 ### Step 2: Deploy to Railway
+
 1. Visit https://railway.app
 2. Click "Create New Project"
 3. Select "Deploy from GitHub"
@@ -37,7 +43,9 @@ git push origin main
 5. Railway auto-detects Node.js and deploys
 
 ### Step 3: Add Environment Variables on Railway
+
 In Railway Dashboard → Service → Variables:
+
 ```
 MONGO_URI=mongodb+srv://sutapak2903_db_user:073zIcLCebwApqrO@cluster0.jbnmoya.mongodb.net/?appName=Cluster0
 JWT_SECRET=J2uZR9kHOBEs6eiP
@@ -72,12 +80,14 @@ MongoDB Atlas (cluster0.jbnmoya.mongodb.net)
 ## 🧪 Quick Test After Deployment
 
 **Test API Health:**
+
 ```bash
 curl https://your-railway-url.up.railway.app/api/health
 # Expected: {"status":"Server is running"}
 ```
 
 **Monitor Logs:**
+
 - Go to Railway Dashboard → Your Service → Logs
 - Watch for "MongoDB connected" message
 
@@ -94,13 +104,16 @@ curl https://your-railway-url.up.railway.app/api/health
 ## 💡 Need Help?
 
 **CORS Issues?**
+
 - Ensure FRONTEND_URL variable is set to your Vercel URL
 
 **Database Connection Issues?**
+
 - Verify MongoDB connection string is correct
 - Check if MongoDB Atlas has your IP whitelisted
 
 **502 Bad Gateway?**
+
 - Check Railway logs for errors
 - Verify all environment variables are set
 

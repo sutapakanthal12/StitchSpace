@@ -1,9 +1,11 @@
 # Railway Backend Deployment Guide
 
 ## Overview
+
 This guide will help you deploy the StitchSpace backend on Railway and connect it to your Vercel frontend.
 
 ## Prerequisites
+
 - Railway account (https://railway.app)
 - MongoDB Atlas connection string
 - Git repository access
@@ -12,7 +14,9 @@ This guide will help you deploy the StitchSpace backend on Railway and connect i
 ## Step 1: Prepare Your Backend
 
 ### 1.1 Update Environment Variables
+
 Your `.env` file has been updated with:
+
 ```
 MONGO_URI=mongodb+srv://sutapak2903_db_user:073zIcLCebwApqrO@cluster0.jbnmoya.mongodb.net/?appName=Cluster0
 JWT_SECRET=J2uZR9kHOBEs6eiP
@@ -21,7 +25,9 @@ NODE_ENV=production
 ```
 
 ### 1.2 Verify package.json
+
 Ensure your `package.json` has the correct start script:
+
 ```json
 "scripts": {
   "start": "node server.js",
@@ -37,26 +43,32 @@ Ensure your `package.json` has the correct start script:
 ### Option A: Deploy via Railway CLI
 
 1. **Install Railway CLI**
+
    ```bash
    npm install -g @railway/cli
    ```
 
 2. **Login to Railway**
+
    ```bash
    railway login
    ```
 
 3. **Create a new project**
+
    ```bash
    railway init
    ```
+
    - Select "Create a new project"
    - Give it a name (e.g., "stitchspace-backend")
 
 4. **Add MongoDB Plugin (Optional - if you want Railway to manage it)**
+
    ```bash
    railway add
    ```
+
    - Select MongoDB
 
 5. **Deploy**
@@ -111,17 +123,21 @@ FRONTEND_URL=https://stitch-space-isew.vercel.app
 
 1. Go to your Vercel project settings
 2. Add environment variable:
+
    ```
    REACT_APP_API_URL=https://your-project-name.up.railway.app
    ```
 
-2. Update [client/src/config/apiConfig.js](client/src/config/apiConfig.js):
+3. Update [client/src/config/apiConfig.js](client/src/config/apiConfig.js):
+
    ```javascript
-   const API_URL = process.env.REACT_APP_API_URL || 'https://your-project-name.up.railway.app';
+   const API_URL =
+     process.env.REACT_APP_API_URL ||
+     "https://your-project-name.up.railway.app";
    export default API_URL;
    ```
 
-3. Redeploy your Vercel frontend
+4. Redeploy your Vercel frontend
 
 ## Step 6: Test the Connection
 
@@ -135,21 +151,27 @@ FRONTEND_URL=https://stitch-space-isew.vercel.app
 ## Troubleshooting
 
 ### Issue: CORS Errors
+
 **Solution:** Ensure `FRONTEND_URL` environment variable is set on Railway to your Vercel URL:
+
 ```
 FRONTEND_URL=https://stitch-space-isew.vercel.app
 ```
 
 ### Issue: MongoDB Connection Timeout
+
 **Solution:** Check if your MongoDB connection string is correct in Railway variables
 
 ### Issue: 502 Bad Gateway
-**Solution:** 
+
+**Solution:**
+
 - Check server logs in Railway dashboard
 - Verify all required environment variables are set
 - Check if PORT is set to 5000
 
 ### Issue: Pages Not Loading
+
 **Solution:** This is expected if you access the backend URL directly. The backend serves API endpoints at `/api/*` paths.
 
 ## Monitoring and Logs
